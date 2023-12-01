@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace DotnetGraphQLApp.Entities.Context;
 
@@ -8,12 +9,13 @@ public class ApplicationContext : DbContext
     : base(options)
     {
     }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        var ids = new Guid[] { Guid.NewGuid(), Guid.NewGuid() };
-        modelBuilder.ApplyConfiguration(new OwnerContextConfiguration(ids));
-        modelBuilder.ApplyConfiguration(new AccountContextConfiguration(ids));
+        modelBuilder.ApplyConfiguration(new OwnerContextConfiguration());
+        modelBuilder.ApplyConfiguration(new AccountContextConfiguration());
     }
+
     public DbSet<Owner> Owners { get; set; }
     public DbSet<Account> Accounts { get; set; }
 }

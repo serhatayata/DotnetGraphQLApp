@@ -1,4 +1,5 @@
 ﻿using DotnetGraphQLApp.Contracts;
+using DotnetGraphQLApp.Entities;
 using DotnetGraphQLApp.Entities.Context;
 
 namespace DotnetGraphQLApp.Repository;
@@ -10,4 +11,6 @@ public class OwnerRepository : IOwnerRepository
     {
         _context = context;
     }
+
+    public IEnumerable<Owner> GetAll() => _context.Owners.ToList();
 }
