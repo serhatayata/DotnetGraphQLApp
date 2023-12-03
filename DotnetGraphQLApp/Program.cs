@@ -3,6 +3,7 @@ using DotnetGraphQLApp.Entities.Context;
 using DotnetGraphQLApp.GraphQL.GraphQLSchema;
 using DotnetGraphQLApp.Repository;
 using GraphQL;
+using GraphQL.DataLoader;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,9 @@ builder.Services.AddControllers()
 builder.Services.AddDbContext<ApplicationContext>(opt =>
     opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddSingleton<IDataLoaderContextAccessor, DataLoaderContextAccessor>();
+builder.Services.AddSingleton<DataLoaderDocumentListener>();
+
 builder.Services.AddScoped<IOwnerRepository, OwnerRepository>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
@@ -26,7 +30,8 @@ builder.Services.AddGraphQL(builder =>
             builder.AddSystemTextJson()
            .AddNewtonsoftJson()
            .AddSchema<AppSchema>()
-           .AddGraphTypes(typeof(AppSchema).Assembly));
+           .AddGraphTypes(typeof(AppSchema).Assembly)
+           .AddDataLoader());
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
