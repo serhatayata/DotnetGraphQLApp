@@ -13,4 +13,6 @@ public class OwnerRepository : IOwnerRepository
     }
 
     public IEnumerable<Owner> GetAll() => _context.Owners.ToList();
+
+    public Owner? GetById(Guid id) => _context.Owners.FirstOrDefault(o => o.Id.Equals(id));
 }
