@@ -13,4 +13,7 @@ public class AccountRepository : IAccountRepository
     }
 
     public IEnumerable<Account> GetAll() => _context.Accounts.ToList();
+
+    public IEnumerable<Account> GetAllAcountsPerOwner(Guid ownerId) => 
+            _context.Accounts.Where(a => a.OwnerId.Equals(ownerId)).ToList();
 }
