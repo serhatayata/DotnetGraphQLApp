@@ -53,8 +53,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseGraphQL<ISchema>();
-app.UseGraphQLGraphiQL();
-app.UseGraphQLAltair();
 app.UseGraphQLPlayground(options: new GraphQL.Server.Ui.Playground.PlaygroundOptions());
 
 app.MapControllers();
