@@ -15,7 +15,8 @@ public class AppMutation : ObjectGraphType
             .Resolve(context =>
             {
                 var owner = context.GetArgument<Owner>("owner");
-                return ownerRepository.Create(owner);
+                var result = ownerRepository.Create(owner);
+                return result;
             });
 
         Field<OwnerType>("updateOwner")

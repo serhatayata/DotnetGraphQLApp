@@ -50,7 +50,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthorization();
 
 app.UseGraphQL<ISchema>();
 app.UseGraphQLPlayground(options: new GraphQL.Server.Ui.Playground.PlaygroundOptions());
