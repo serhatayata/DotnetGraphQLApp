@@ -90,6 +90,19 @@ query ownerQuery($ownerID: ID!, $showName: Boolean!){
     }
   }
 }
+
+query ownersQuery {
+  owners {
+    id
+    name
+    address
+    accounts {
+      id
+      type
+      description        
+    }
+  }
+}
 ```
 
 ### Mutation
