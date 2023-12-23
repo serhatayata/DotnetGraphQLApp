@@ -25,7 +25,7 @@ Some of the queries or mutations need query variables
 - Simple query
 ```
 {
-  owners : {
+  owners {
     id
     name
     address
